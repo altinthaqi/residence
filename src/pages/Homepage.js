@@ -21,6 +21,7 @@ import r3 from "../assets/img/residence3.jpg";
 
 import cta from "../assets/img/cta.png";
 import Reviews from "../components/homepage/Reviews";
+import Carousel from "../components/homepage/Carousel";
 
 function Homepage() {
   return (
@@ -46,7 +47,6 @@ function Homepage() {
           </Heading>
         </Box>
       </Container>
-
       <Container maxW="container.md" centerContent my={20}>
         <Heading textAlign="center">
           Aty ku thjeshtësia prekë funksionalitetin
@@ -55,7 +55,6 @@ function Homepage() {
           qkado që kërkoni, e gjeni në Residencë.
         </Text>
       </Container>
-
       <Container maxW="container.xl" my={20}>
         <SimpleGrid columns={[1, 2, 3]} spacing={10}>
           <Box>
@@ -103,46 +102,56 @@ function Homepage() {
           </Box>
         </SimpleGrid>
       </Container>
-
-      <Container maxW="container.full" background="gray.400">
-        <Container maxW="container.xl" py={10}>
-          <Flex direction="column">
-            <Box alignSelf="flex-start" alignItems="flex-start">
-              <VStack alignItems="flex-start">
-                <Heading
-                  my={2}
-                  size="lg"
-                  fontWeight="medium"
-                  color="blackAlpha.800"
-                >
-                  Nuk ke llogari?
-                </Heading>
-                <Button size="lg" colorScheme="blue" color="white">
-                  Regjistrohu
-                </Button>
-              </VStack>
-            </Box>
-
-            <Box alignSelf="flex-end">
-              <VStack alignItems="flex-end">
-                <Heading
-                  my={2}
-                  size="lg"
-                  fontWeight="medium"
-                  color="blackAlpha.800"
-                >
-                  Je duke kerkuar residence?
-                </Heading>
-                <Button size="lg" colorScheme="blue" color="white">
-                  Kerko
-                </Button>
-              </VStack>
-            </Box>
-          </Flex>
+      <Container
+        py={10}
+        maxW="container.full"
+        background="gray.50"
+        boxShadow="md"
+      >
+        <Container maxW="container.xl">
+          <Box alignSelf="flex-start" alignItems="flex-start">
+            <VStack alignItems="flex-start">
+              <Heading
+                mb={5}
+                size="xl"
+                fontWeight="medium"
+                color="blackAlpha.800"
+              >
+                Nuk keni llogari?
+              </Heading>
+              <Button size="lg" colorScheme="teal" color="white">
+                Regjistrohu
+              </Button>
+            </VStack>
+          </Box>
         </Container>
       </Container>
-
-      <Reviews />
+      <Reviews />{" "}
+      <Container
+        py={10}
+        maxW="container.full"
+        background="gray.50"
+        boxShadow="md"
+      >
+        <Container maxW="container.xl">
+          <Box alignSelf="flex-end">
+            <VStack alignItems="flex-end">
+              <Heading
+                mb={5}
+                size="xl"
+                fontWeight="medium"
+                color="blackAlpha.800"
+              >
+                Jeni duke kerkuar residence?
+              </Heading>
+              <Button size="lg" colorScheme="teal" color="white">
+                Kerko
+              </Button>
+            </VStack>
+          </Box>
+        </Container>
+      </Container>
+      <Carousel />
     </>
   );
 }
