@@ -17,7 +17,7 @@ const Review = ({ card }) => {
               </Text>
             </Flex>
             {card.text.map((text) => (
-              <Text color="gray.500" fontWeight="normal" my={3}>
+              <Text key={text} color="gray.500" fontWeight="normal" my={3}>
                 {text}
               </Text>
             ))}

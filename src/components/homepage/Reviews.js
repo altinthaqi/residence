@@ -37,7 +37,7 @@ const Reviews = () => {
           align="center"
         >
           {reviewCards.map((card) => (
-            <Review card={card} />
+            <Review key={card.id} card={card} />
           ))}
         </Wrap>
       </Container>

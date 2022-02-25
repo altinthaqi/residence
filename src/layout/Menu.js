@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Flex, HStack, Spacer, Text } from "@chakra-ui/react";
+import { NavLink } from "react-router-dom";
 
 function Menu() {
   return (
@@ -16,15 +17,15 @@ function Menu() {
     >
       <Flex>
         <Text fontWeight="semibold" fontSize="xl">
-          residence.com
+          <NavLink to="/">residence.com</NavLink>
         </Text>
         <Spacer />
         <HStack spacing={5}>
           <Text fontWeight="medium" fontSize="lg">
             ofro
           </Text>
-          <Text fontWeight="medium" fontSize="lg">
-            kyqu
+          <Text color="teal" fontWeight="medium" fontSize="lg">
+            <NavLink to="/kyqu">kyqu</NavLink>
           </Text>
         </HStack>
       </Flex>

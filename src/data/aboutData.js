@@ -2,6 +2,7 @@ import tweet from "../assets/img/tweet.jpg";
 
 export const reviewCards = [
   {
+    id: 1,
     profile: tweet,
     name: "Altin Thaci",
     account: "@altinthaci",
@@ -10,6 +11,7 @@ export const reviewCards = [
     ],
   },
   {
+    id: 2,
     profile: tweet,
     name: "Altin Thaci",
     account: "@altinthaci",
@@ -18,6 +20,7 @@ export const reviewCards = [
     ],
   },
   {
+    id: 3,
     profile: tweet,
     name: "Altin Thaci",
     account: "@altinthaci",
@@ -26,23 +29,7 @@ export const reviewCards = [
     ],
   },
   {
-    profile: tweet,
-    name: "Altin Thaci",
-    account: "@altinthaci",
-    text: [
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga, earum!",
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde magni et sit repudiandae, commodi facilis.",
-    ],
-  },
-  {
-    profile: tweet,
-    name: "Altin Thaci",
-    account: "@altinthaci",
-    text: [
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde magni et sit repudiandae, commodi facilis.",
-    ],
-  },
-  {
+    id: 4,
     profile: tweet,
     name: "Altin Thaci",
     account: "@altinthaci",
@@ -52,6 +39,7 @@ export const reviewCards = [
     ],
   },
   {
+    id: 5,
     profile: tweet,
     name: "Altin Thaci",
     account: "@altinthaci",
@@ -60,6 +48,26 @@ export const reviewCards = [
     ],
   },
   {
+    id: 6,
+    profile: tweet,
+    name: "Altin Thaci",
+    account: "@altinthaci",
+    text: [
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga, earum!",
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde magni et sit repudiandae, commodi facilis.",
+    ],
+  },
+  {
+    id: 7,
+    profile: tweet,
+    name: "Altin Thaci",
+    account: "@altinthaci",
+    text: [
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde magni et sit repudiandae, commodi facilis.",
+    ],
+  },
+  {
+    id: 8,
     profile: tweet,
     name: "Altin Thaci",
     account: "@altinthaci",
