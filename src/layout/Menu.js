@@ -22,6 +22,9 @@ function Menu() {
         <Spacer />
         <HStack spacing={5}>
           <Text fontWeight="medium" fontSize="lg">
+            <NavLink to="/residences">kerko</NavLink>
+          </Text>
+          <Text fontWeight="medium" fontSize="lg">
             ofro
           </Text>
           <Text color="teal" fontWeight="medium" fontSize="lg">
