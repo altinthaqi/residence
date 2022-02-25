@@ -64,7 +64,7 @@ export default function Carousel() {
         color="blackAlpha"
         pt={20}
       >
-        Revista Jonë
+        Revista jonë
       </Heading>
       <Text py={2} fontSize="xl" color="blackAlpha.600" textAlign="center">
         Gjëra të mira, gjëra të bukura!

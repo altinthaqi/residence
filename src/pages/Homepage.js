@@ -1,15 +1,12 @@
 import {
   Box,
   Container,
-  Flex,
   Heading,
   HStack,
   SimpleGrid,
   Text,
   Button,
   VStack,
-  Spacer,
-  Divider,
 } from "@chakra-ui/react";
 
 import React from "react";
@@ -18,8 +15,6 @@ import BannerImg from "../assets/img/banner.png";
 import r1 from "../assets/img/residence1.jpg";
 import r2 from "../assets/img/residence2.jpg";
 import r3 from "../assets/img/residence3.jpg";
-
-import cta from "../assets/img/cta.png";
 import Reviews from "../components/homepage/Reviews";
 import Carousel from "../components/homepage/Carousel";
 
@@ -43,7 +38,7 @@ function Homepage() {
             position="absolute"
             color="gray.200"
           >
-            Gjejë Residencën tënde të re!
+            Gjejë Residencen tënde të re!
           </Heading>
         </Box>
       </Container>
@@ -126,7 +121,7 @@ function Homepage() {
           </Box>
         </Container>
       </Container>
-      <Reviews />{" "}
+      <Reviews />
       <Container
         py={10}
         maxW="container.full"

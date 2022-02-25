@@ -22,12 +22,10 @@ const Reviews = () => {
         fontWeight="bold"
         my={10}
       >
-        Gjeni{" "}
+        Qfarë thonë{" "}
         <Box as="span" color="#319795">
-          {" "}
-          residencen{" "}
+          përdoruesit{" "}
         </Box>
-        tuaj
       </Heading>
 
       <Container maxW="container.xl">
