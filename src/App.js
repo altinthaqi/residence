@@ -6,6 +6,7 @@ import Register from "./pages/Register";
 import Residences from "./pages/Residences";
 import Residence from "./pages/Residence";
 import ScrollToTop from "./ScrollToTop";
+import Ofro from "./pages/Ofro";
 
 const apiPath = "http://localhost/residence/src/apis/hello.php";
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/kyqu" element={<Login />} />
         <Route path="/residences" element={<Residences />} />
         <Route path="/residences/:id" element={<Residence />} />
+        <Route path="/ofro" element={<Ofro />} />
       </Routes>
     </BrowserRouter>
   );

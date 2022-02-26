@@ -7,7 +7,8 @@ function Menu() {
     <Container
       maxW="container.full"
       boxShadow="sm"
-      p="6"
+      px="6"
+      py="4"
       rounded="md"
       bg="white"
       position="sticky"
@@ -25,7 +26,7 @@ function Menu() {
             <NavLink to="/residences">kerko</NavLink>
           </Text>
           <Text fontWeight="medium" fontSize="lg">
-            ofro
+            <NavLink to="/ofro">ofro</NavLink>
           </Text>
           <Text color="teal" fontWeight="medium" fontSize="lg">
             <NavLink to="/kyqu">kyqu</NavLink>
