@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 
-function FilterModal({ isOpen, onClose, onSubmitFilter }) {
+function Filter({ isOpen, onClose, onSubmitFilter }) {
   const handleFilterSubmit = (e) => {
     e.preventDefault();
     onSubmitFilter({
@@ -89,4 +89,4 @@ function FilterModal({ isOpen, onClose, onSubmitFilter }) {
   );
 }
 
-export default FilterModal;
+export default Filter;

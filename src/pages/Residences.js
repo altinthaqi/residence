@@ -1,6 +1,7 @@
 import { useDisclosure } from "@chakra-ui/react";
 import React, { useState } from "react";
-import FilterSearchBar from "../components/Residences/FilterSearchBar";
+import PersonalizedSearchBar from "../components/Residences/PersonalizedSearchBar";
+import ResidenceList from "../components/Residences/ResidenceList";
 
 function Residences() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -22,7 +23,7 @@ function Residences() {
 
   return (
     <>
-      <FilterSearchBar
+      <PersonalizedSearchBar
         filterData={filterData}
         onSubmitFilter={onSubmitFilter}
         isOpen={isOpen}
@@ -30,6 +31,7 @@ function Residences() {
         onClose={onClose}
         onSortDataChange={onSortDataChange}
       />
+      <ResidenceList />
     </>
   );
 }

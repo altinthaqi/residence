@@ -7,9 +7,9 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
-import FilterModal from "./FilterModal";
+import Filter from "./Filter";
 
-function FilterSearchBar({
+function PersonalizedSearchBar({
   filterData,
   onSubmitFilter,
   onClose,
@@ -57,7 +57,7 @@ function FilterSearchBar({
         <Spacer />
         <Button onClick={onOpen}>Filtro</Button>
 
-        <FilterModal
+        <Filter
           onSubmitFilter={onSubmitFilter}
           isOpen={isOpen}
           onClose={onClose}
@@ -74,4 +74,4 @@ function FilterSearchBar({
   );
 }
 
-export default FilterSearchBar;
+export default PersonalizedSearchBar;
