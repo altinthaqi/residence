@@ -3,7 +3,7 @@ import React from "react";
 import ResidenceItem from "./ResidenceItem";
 
 const residenceItemProps = {
-  title: "Apartament",
+  title: "Apartament Shtepiak Familjare",
   city: "Peje",
   residenceType: "Banese",
   rooms: "2",
@@ -12,7 +12,7 @@ const residenceItemProps = {
 
 function ResidenceList() {
   return (
-    <Container maxW="container.xl">
+    <Container maxW="container.xl" my={10}>
       <SimpleGrid columns={[1, 1, 1, 2]} spacing={10}>
         <ResidenceItem {...residenceItemProps} />
         <ResidenceItem {...residenceItemProps} />

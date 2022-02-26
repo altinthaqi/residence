@@ -1,5 +1,6 @@
 import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
 import React from "react";
+import { NavLink } from "react-router-dom";
 import apartment from "../../assets/img/apartment1.jpg";
 
 function ResidenceItem({ title, city, residenceType, rooms, price }) {
@@ -16,7 +17,7 @@ function ResidenceItem({ title, city, residenceType, rooms, price }) {
                 color="teal.700"
                 fontSize={["16px", "21px"]}
               >
-                {title}
+                <NavLink to="/residences/1">{title}</NavLink>
               </Heading>
               <Text fontSize={["14px", "16px"]}>
                 <Box as="span" fontWeight="medium">

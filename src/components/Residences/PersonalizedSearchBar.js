@@ -49,6 +49,7 @@ function PersonalizedSearchBar({
     <Container
       maxW="container.xl"
       style={{ minHeight: "100px", height: "100px" }}
+      shadow="sm"
     >
       <HStack height="100%">
         <Text height="100%" mt={12} fontWeight="medium">

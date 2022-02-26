@@ -5,11 +5,13 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Residences from "./pages/Residences";
 import Residence from "./pages/Residence";
+import ScrollToTop from "./ScrollToTop";
 
 const apiPath = "http://localhost/residence/src/apis/hello.php";
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Menu />
       <Routes>
         <Route path="/" element={<Homepage />} />
