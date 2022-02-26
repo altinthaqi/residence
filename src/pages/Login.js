@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Center,
   Container,
@@ -9,11 +8,10 @@ import {
   Input,
   InputGroup,
   InputRightElement,
-  Text,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { NavLink } from "react-router-dom";
+import LoginRegisterCTA from "../components/UI/LoginRegisterCTA";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -85,16 +83,7 @@ function Login() {
         </Center>
       </form>
 
-      <Text mt={10}>
-        Nuk keni llogari?
-        <br /> Atehere{" "}
-        <NavLink to="/regjistrohu">
-          <Box as="span" color="teal.500" fontWeight="medium">
-            {" "}
-            regjistrohuni ketu.
-          </Box>
-        </NavLink>
-      </Text>
+      <LoginRegisterCTA action="login" />
     </Container>
   );
 }
