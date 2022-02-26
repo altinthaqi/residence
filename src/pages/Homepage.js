@@ -1,9 +1,9 @@
 import React from "react";
-import Reviews from "../components/homepage/Reviews";
-import Carousel from "../components/homepage/Carousel";
-import Banner from "../components/homepage/Banner";
-import LatestPosts from "../components/homepage/LatestPosts";
-import CallToAction from "../components/homepage/CallToAction";
+import Reviews from "../components/Homepage/Reviews";
+import Carousel from "../components/Homepage/Carousel";
+import Banner from "../components/Homepage/Banner";
+import LatestPosts from "../components/Homepage/LatestPosts";
+import CallToAction from "../components/Homepage/CallToAction";
 
 function Homepage() {
   return (
