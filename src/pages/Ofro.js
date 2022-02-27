@@ -12,7 +12,10 @@ import {
   Stack,
   Textarea,
 } from "@chakra-ui/react";
+import axios from "axios";
 import React, { useState } from "react";
+
+const ofroResidenceApi = "http://localhost/residence/src/apis/ofro.php";
 
 function Ofro() {
   const [formData, setFormData] = useState({
@@ -46,18 +49,32 @@ function Ofro() {
     e.preventDefault();
 
     setFormData({
-      title: e.target.description.value,
-      description: e.target.title.value,
-      residenceType: e.target.residenceType.value,
-      nrRooms: e.target.nrRooms.value,
-      residenceSize: e.target.residenceSize.value,
-      price: e.target.price.value,
+      title: e.target.title.value,
+      description: e.target.description.value,
+      residenceType: Number(e.target.residenceType.value),
+      nrRooms: Number(e.target.nrRooms.value),
+      residenceSize: Number(e.target.residenceSize.value),
+      price: Number(e.target.price.value),
       city: e.target.city.value,
       neighborhood: e.target.neighborhood.value,
       street: e.target.street.value,
-      tel: e.target.tel.value,
-      residenceImage: e.target.residenceImage?.value,
+      tel: e.target.tel.value.toString(),
+      residenceImage: e.target.residenceImage.value,
     });
+
+    console.log(formData);
+
+    const handlePostResidence = async () => {
+      try {
+        const response = await axios.post(ofroResidenceApi, formData);
+
+        console.log(response);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    handlePostResidence();
   };
 
   return (
@@ -66,7 +83,11 @@ function Ofro() {
         Ofro Residence
       </Heading>
 
-      <form onSubmit={handleSubmit} style={{ width: "80%" }}>
+      <form
+        onSubmit={handleSubmit}
+        style={{ width: "80%" }}
+        encType="multipart/form-data"
+      >
         <FormControl isRequired my={3}>
           <FormLabel>Titulli</FormLabel>
           <Input
