@@ -9,38 +9,50 @@ import {
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
+import axios from "axios";
 import React, { useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import LoginRegisterCTA from "../components/UI/LoginRegisterCTA";
 
+const loginPath = "http://localhost/residence/src/apis/login.php";
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const [datafromphp, setdatafromphp] = useState([]);
 
   const [formInputData, setFormInputData] = useState({
     email: "",
     password: "",
   });
-
   const canLogin = formInputData.email !== "" && formInputData.password !== "";
 
   const emailChangeHandler = (e) => {
     setFormInputData({ ...formInputData, email: e.target.value });
   };
-
   const passwordChangeHandler = (e) => {
     setFormInputData({ ...formInputData, password: e.target.value });
   };
-
   const handlePasswordVisibility = () => setShowPassword(!showPassword);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formInputData);
 
-    setFormInputData({
-      email: "",
-      password: "",
-    });
+    const userLogIn = async () => {
+      try {
+        const request = await axios.post(loginPath, formInputData);
+        setdatafromphp(request.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    // setFormInputData({
+    //   email: "",
+    //   password: "",
+    // });\
+    userLogIn();
+
+    console.log(datafromphp);
   };
   return (
     <Container maxWidth="600px" my={10} centerContent>

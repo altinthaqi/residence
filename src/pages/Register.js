@@ -10,9 +10,12 @@ import {
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
+import axios from "axios";
 import React, { useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import LoginRegisterCTA from "../components/UI/LoginRegisterCTA";
+
+const loginPath = "http://localhost/residence/src/apis/register.php";
 
 function Register() {
   const [showPassword, setShowPassword] = useState(false);
@@ -55,15 +58,19 @@ function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    axios
+      .post(loginPath, formInputData)
+      .then((resp) => console.log(resp))
+      .catch((err) => console.log(err));
     console.log(formInputData);
 
-    setFormInputData({
-      name: "",
-      lastname: "",
-      email: "",
-      password: "",
-      city: "",
-    });
+    // setFormInputData({
+    //   name: "",
+    //   lastname: "",
+    //   email: "",
+    //   password: "",
+    //   city: "",
+    // });
   };
   return (
     <Container maxWidth="600px" my={10} centerContent>
