@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container, Flex, HStack, Spacer, Text } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
+import axios from "axios";
+
+const logoutApi = "http://localhost/residence/src/apis/logout.php";
 
 function Menu() {
+  const { currentUserData, setCurrentUserData } = useContext(UserContext);
+
+  const handleLogOut = () => {
+    setCurrentUserData({ userInfo: [], isLoggedIn: false });
+
+    axios
+      .get(logoutApi)
+      .then((response) => console.log(response))
+      .catch((err) => console.log(err));
+  };
+
   return (
     <Container
       maxW="container.full"
@@ -29,7 +44,12 @@ function Menu() {
             <NavLink to="/ofro">ofro</NavLink>
           </Text>
           <Text color="teal" fontWeight="medium" fontSize="lg">
-            <NavLink to="/kyqu">kyqu</NavLink>
+            {!currentUserData.isLoggedIn && <NavLink to="/kyqu">kyqu</NavLink>}
+            {currentUserData.isLoggedIn && (
+              <NavLink onClick={handleLogOut} to="/">
+                qkyqu
+              </NavLink>
+            )}
           </Text>
         </HStack>
       </Flex>

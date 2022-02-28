@@ -7,3 +7,5 @@ $username = 'root';
 $password = '';
 
 $pdo = new PDO($dsn, $username, $password);
+
+session_start();

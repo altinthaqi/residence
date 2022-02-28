@@ -11,30 +11,52 @@ import { useState, useContext } from "react";
 import { UserContext } from "./context/UserContext";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
-  const [userData, setUserData] = useState({});
+  const [currentUserData, setCurrentUserData] = useState({
+    userInfo: [],
+    isLoggedIn: false,
+  });
 
   return (
-    <UserContext.Provider value={{ userData, setUserData }}>
+    <UserContext.Provider value={{ currentUserData, setCurrentUserData }}>
       <BrowserRouter>
         <ScrollToTop />
         <Menu />
         <Routes>
           <Route path="/" element={<Homepage />} />
 
-          <Route path="/regjistrohu" element={<Register />} />
-          <Route path="/kyqu" element={<Login />} />
+          <Route
+            path="/regjistrohu"
+            element={currentUserData.isLoggedIn ? <Residences /> : <Register />}
+          />
+          <Route
+            path="/kyqu"
+            element={currentUserData.isLoggedIn ? <Residences /> : <Login />}
+          />
           <Route
             path="/residences"
-            element={loggedIn ? <Residences /> : <Navigate to="/kyqu" />}
+            element={
+              currentUserData.isLoggedIn ? (
+                <Residences />
+              ) : (
+                <Navigate to="/kyqu" />
+              )
+            }
           />
           <Route
             path="/residences/:id"
-            element={loggedIn ? <Residence /> : <Navigate to="/kyqu" />}
+            element={
+              currentUserData.isLoggedIn ? (
+                <Residence />
+              ) : (
+                <Navigate to="/kyqu" />
+              )
+            }
           />
           <Route
             path="/ofro"
-            element={loggedIn ? <Ofro /> : <Navigate to="/kyqu" />}
+            element={
+              currentUserData.isLoggedIn ? <Ofro /> : <Navigate to="/kyqu" />
+            }
           />
         </Routes>
       </BrowserRouter>

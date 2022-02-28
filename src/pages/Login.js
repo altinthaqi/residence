@@ -10,14 +10,15 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import LoginRegisterCTA from "../components/UI/LoginRegisterCTA";
+import { UserContext } from "../context/UserContext";
 
 const loginPath = "http://localhost/residence/src/apis/login.php";
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
-  const [datafromphp, setdatafromphp] = useState([]);
+  const { currentUserData, setCurrentUserData } = useContext(UserContext);
 
   const [formInputData, setFormInputData] = useState({
     email: "",
@@ -40,19 +41,18 @@ function Login() {
     const userLogIn = async () => {
       try {
         const request = await axios.post(loginPath, formInputData);
-        setdatafromphp(request.data);
+        console.log(request.data);
+        if (request.data)
+          setCurrentUserData({ userInfo: request.data, isLoggedIn: true });
+        else console.log("does not have data");
+
+        console.log(currentUserData);
       } catch (err) {
         console.log(err);
       }
     };
 
-    // setFormInputData({
-    //   email: "",
-    //   password: "",
-    // });\
     userLogIn();
-
-    console.log(datafromphp);
   };
   return (
     <Container maxWidth="600px" my={10} centerContent>

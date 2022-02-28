@@ -13,25 +13,28 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { UserContext } from "../context/UserContext";
 
 const ofroResidenceApi = "http://localhost/residence/src/apis/ofro.php";
 
 function Ofro() {
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    residenceType: "",
-    nrRooms: "",
-    residenceSize: "",
-    price: "",
-    city: "",
-    neighborhood: "",
-    street: "",
-    tel: "",
-    image: "",
-    residenceImage: "",
-  });
+  const { currentUserData } = useContext(UserContext);
+  // const [formData, setFormData] = useState({
+  //   title: "",
+  //   description: "",
+  //   residenceType: "",
+  //   nrRooms: "",
+  //   residenceSize: "",
+  //   price: "",
+  //   city: "",
+  //   neighborhood: "",
+  //   street: "",
+  //   tel: "",
+  //   image: "",
+  //   residenceImage: "",
+  //   userId: currentUserData.userInfo.id,
+  // });
 
   //   const canSubmit =
   //     formData.title !== "" &&
@@ -48,33 +51,23 @@ function Ofro() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setFormData({
-      title: e.target.title.value,
-      description: e.target.description.value,
-      residenceType: Number(e.target.residenceType.value),
-      nrRooms: Number(e.target.nrRooms.value),
-      residenceSize: Number(e.target.residenceSize.value),
-      price: Number(e.target.price.value),
-      city: e.target.city.value,
-      neighborhood: e.target.neighborhood.value,
-      street: e.target.street.value,
-      tel: e.target.tel.value.toString(),
-      residenceImage: e.target.residenceImage.value,
-    });
-
-    console.log(formData);
-
-    const handlePostResidence = async () => {
-      try {
-        const response = await axios.post(ofroResidenceApi, formData);
-
-        console.log(response);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    handlePostResidence();
+    axios
+      .post(ofroResidenceApi, {
+        title: e.target.title.value,
+        description: e.target.description.value,
+        residenceType: Number(e.target.residenceType.value),
+        nrRooms: Number(e.target.nrRooms.value),
+        residenceSize: Number(e.target.residenceSize.value),
+        price: Number(e.target.price.value),
+        city: e.target.city.value,
+        neighborhood: e.target.neighborhood.value,
+        street: e.target.street.value,
+        tel: e.target.tel.value.toString(),
+        residenceImage: e.target.residenceImage.value,
+        userId: currentUserData.userInfo.id,
+      })
+      .then((response) => console.log(response))
+      .catch((err) => console.log(err));
   };
 
   return (
