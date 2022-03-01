@@ -4,13 +4,7 @@ include('./db.php');
 $_POST = json_decode(file_get_contents("php://input"), true);
 
 
-
-// Check if image file is a actual image or fake image
-
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    echo "you just posted a residence";
 
     $title = $_POST['title'];
     $description = $_POST['description'];
@@ -22,12 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $neighborhood = $_POST['neighborhood'];
     $street = $_POST['street'];
     $tel = $_POST['tel'];
-    $residenceImage = $_POST['residenceImage'];
     $userId = $_POST['userId'];
 
-    echo $residenceImage;
-
-
+    $residenceImage = $_POST['residenceImage'];
 
 
     $sql = 'INSERT INTO residences (title, descrip, img, city, neighborhood, street, rooms, price, square_meters, telephone_number, category_id, usr_id) VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';

@@ -1,13 +1,21 @@
 import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
 import React from "react";
 import { NavLink } from "react-router-dom";
-import apartment from "../../assets/img/apartment1.jpg";
 
-function ResidenceItem({ title, city, residenceType, rooms, price }) {
+function ResidenceItem({
+  id,
+  img,
+  title,
+  city,
+  residenceType,
+  rooms,
+  price,
+  category_id,
+}) {
   return (
     <Box boxShadow="sm">
       <Flex>
-        <Image p={2} maxWidth={["180px", "250px"]} src={apartment} />
+        <Image p={2} maxWidth={["180px", "250px"]} src={img} />
         <Box px={2} width="50%">
           <Flex direction="column" justifyContent="space-around" height="100%">
             <Box>
@@ -17,7 +25,7 @@ function ResidenceItem({ title, city, residenceType, rooms, price }) {
                 color="teal.700"
                 fontSize={["16px", "21px"]}
               >
-                <NavLink to="/residences/1">{title}</NavLink>
+                <NavLink to={`/residences/${id}`}>{title}</NavLink>
               </Heading>
               <Text fontSize={["14px", "16px"]}>
                 <Box as="span" fontWeight="medium">
@@ -29,7 +37,7 @@ function ResidenceItem({ title, city, residenceType, rooms, price }) {
                 <Box as="span" fontWeight="medium">
                   Tipi:
                 </Box>{" "}
-                {residenceType}
+                {category_id == 1 ? "Banese" : "Shtepi"}
               </Text>
             </Box>
             <Box>

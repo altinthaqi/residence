@@ -1,7 +1,7 @@
 import { Box, Container, Divider, Heading, Link, Text } from "@chakra-ui/react";
 import React from "react";
 
-function Contact() {
+function Contact({ first_name, last_name, email, telephone_number }) {
   return (
     <Container my={20} p={5} centerContent>
       <Heading my={5} size="lg" fontWeight="medium">
@@ -13,19 +13,19 @@ function Contact() {
           <Box as="span" fontWeight="medium">
             Pronari:
           </Box>{" "}
-          Altin Thaci
+          {first_name} {last_name}
         </Text>
         <Text fontSize="18px" my={5}>
           <Box as="span" fontWeight="medium">
             Email:
           </Box>{" "}
-          <Link href="mailto:altinthaqi2@gmail.com">altinthaqi2@gmail.com</Link>
+          <Link href="mailto:altinthaqi2@gmail.com">{email}</Link>
         </Text>
         <Text fontSize="18px" my={5}>
           <Box as="span" fontWeight="medium">
             Tel:
           </Box>{" "}
-          049111111
+          {telephone_number}
         </Text>
       </Box>
     </Container>

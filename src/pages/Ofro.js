@@ -3,7 +3,6 @@ import {
   Center,
   Container,
   FormControl,
-  FormHelperText,
   FormLabel,
   Heading,
   Input,
@@ -13,40 +12,13 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 
 const ofroResidenceApi = "http://localhost/residence/src/apis/ofro.php";
 
 function Ofro() {
   const { currentUserData } = useContext(UserContext);
-  // const [formData, setFormData] = useState({
-  //   title: "",
-  //   description: "",
-  //   residenceType: "",
-  //   nrRooms: "",
-  //   residenceSize: "",
-  //   price: "",
-  //   city: "",
-  //   neighborhood: "",
-  //   street: "",
-  //   tel: "",
-  //   image: "",
-  //   residenceImage: "",
-  //   userId: currentUserData.userInfo.id,
-  // });
-
-  //   const canSubmit =
-  //     formData.title !== "" &&
-  //     formData.description !== "" &&
-  //     formData.residenceType !== "" &&
-  //     formData.nrRooms !== "" &&
-  //     formData.residenceSize !== "" &&
-  //     formData.price !== "" &&
-  //     formData.city !== "" &&
-  //     formData.neighborhood !== "" &&
-  //     formData.street !== "" &&
-  //     formData.tel !== "";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -68,6 +40,8 @@ function Ofro() {
       })
       .then((response) => console.log(response))
       .catch((err) => console.log(err));
+
+    console.log(e.target.reset());
   };
 
   return (
@@ -176,10 +150,14 @@ function Ofro() {
           <Input name="tel" id="tel" placeholder="049111111" type="text" />
         </FormControl>
 
-        <FormControl my={8}>
-          <FormLabel>Imazhi Residences</FormLabel>
-          <input name="residenceImage" id="residenceImage" type="file" />
-          <FormHelperText>opsionale*</FormHelperText>
+        <FormControl isRequired my={8}>
+          <FormLabel>URL i Imazhit te Residences</FormLabel>
+          <Input
+            name="residenceImage"
+            id="residenceImage"
+            placeholder="Image Adress"
+            type="text"
+          />
         </FormControl>
         <Center>
           <Button type="submit" colorScheme="teal">

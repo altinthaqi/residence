@@ -2,25 +2,16 @@ import { Container, SimpleGrid } from "@chakra-ui/react";
 import React from "react";
 import ResidenceItem from "./ResidenceItem";
 
-const residenceItemProps = {
-  title: "Apartament Shtepiak Familjare",
-  city: "Peje",
-  residenceType: "Banese",
-  rooms: "2",
-  price: "220",
-};
-
-function ResidenceList() {
+function ResidenceList({ residencesData }) {
   return (
     <Container maxW="container.xl" my={10}>
       <SimpleGrid columns={[1, 1, 1, 2]} spacing={10}>
-        <ResidenceItem {...residenceItemProps} />
-        <ResidenceItem {...residenceItemProps} />
-        <ResidenceItem {...residenceItemProps} />
-        <ResidenceItem {...residenceItemProps} />
-        <ResidenceItem {...residenceItemProps} />
-        <ResidenceItem {...residenceItemProps} />
-        <ResidenceItem {...residenceItemProps} />
+        {residencesData?.map((residence) => (
+          <ResidenceItem {...residence} />
+        ))}
+
+        {residencesData?.length === 0 &&
+          "There isn't any residences in the DB!"}
       </SimpleGrid>
     </Container>
   );

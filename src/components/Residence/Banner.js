@@ -3,9 +3,9 @@ import React from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import { NavLink } from "react-router-dom";
 
-import residenceImage from "../../assets/img/apartment1.jpg";
+// import residenceImage from "../../assets/img/apartment1.jpg";
 
-function Banner() {
+function Banner({ residenceImage }) {
   return (
     <Container position="relative" maxW="container.full">
       <Image

@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 
-function Location() {
+function Location({ city, neighborehood, street }) {
   return (
     <Container maxW="container.md" mt={20}>
       <Table variant="striped">
@@ -24,9 +24,9 @@ function Location() {
         </Thead>
         <Tbody>
           <Tr>
-            <Td>Prishtinë</Td>
-            <Td>Tophane</Td>
-            <Td>Rr. Azem Balija 2</Td>
+            <Td>{city}</Td>
+            <Td>{neighborehood}</Td>
+            <Td>{street}</Td>
           </Tr>
         </Tbody>
       </Table>

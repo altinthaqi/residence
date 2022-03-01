@@ -8,4 +8,6 @@ $password = '';
 
 $pdo = new PDO($dsn, $username, $password);
 
+// $results = $select_query->fetchAll(PDO::FETCH_ASSOC);
+
 session_start();
