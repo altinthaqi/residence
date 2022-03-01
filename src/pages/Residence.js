@@ -1,4 +1,11 @@
-import { Center, Container, Divider, Heading, Text } from "@chakra-ui/react";
+import {
+  Center,
+  Container,
+  Divider,
+  Heading,
+  SimpleGrid,
+  Text,
+} from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import ResidenceList from "../components/Residences/ResidenceList";
 import Banner from "../components/Residence/Banner";
@@ -18,6 +25,7 @@ const similarResidencesApi =
   "http://localhost/residence/src/apis/similarResidences.php";
 
 function Residence() {
+  let isMounted = true;
   const [specificResidenceData, setSpecificResidenceData] = useState([]);
   const [residenceOwner, setResidenceOwner] = useState({});
   const [similarResidences, setSimilarResidences] = useState([]);
@@ -27,7 +35,7 @@ function Residence() {
     const fetchSpecificResidence = async () => {
       try {
         const response = await axios.post(specificResidenceApi, { id });
-        setSpecificResidenceData(response.data);
+        if (isMounted) setSpecificResidenceData(response.data);
       } catch (err) {
         console.log(err);
       }
@@ -39,7 +47,7 @@ function Residence() {
         const response = await axios.post(residenceOwnerApi, {
           user_id,
         });
-        setResidenceOwner(response.data);
+        if (isMounted) setResidenceOwner(response.data);
       } catch (err) {
         console.log(err);
       }
@@ -52,7 +60,7 @@ function Residence() {
           rooms,
         });
 
-        setSimilarResidences(response.data);
+        if (isMounted) setSimilarResidences(response.data);
       } catch (err) {
         console.log(err);
       }
@@ -60,8 +68,13 @@ function Residence() {
 
     fetchSpecificResidence();
     fetchResidenceOwner();
+
     fetchSimilarResidences();
-  }, [id, specificResidenceData.usr_id, specificResidenceData.rooms]);
+
+    return () => {
+      isMounted = false;
+    };
+  }, [id, specificResidenceData.rooms, specificResidenceData.usr_id]);
 
   return (
     <>
@@ -98,9 +111,22 @@ function Residence() {
         </Heading>
 
         <Divider />
-
-        <ResidenceList residencesData={similarResidences} />
       </Container>
+
+      {/* <Container maxW="container.xl" my={10}>
+      <SimpleGrid columns={[1, 1, 1, 2]} spacing={10}>
+        {similarResidences &&
+          similarResidences.map((residence) => <ResidenceItem {...residence} />)}
+
+        {similarResidences &&
+          similarResidences.length === 0 &&
+          "There isn't any similar residences!"}
+      </SimpleGrid>
+    </Container>  */}
+
+      {similarResidences && similarResidences.length > 1 && (
+        <ResidenceList residencesData={similarResidences} />
+      )}
     </>
   );
 }
