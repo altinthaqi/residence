@@ -10,6 +10,8 @@ const fetchAllResidencesApi =
 
 const fetchFilteredResidencesApi =
   "http://localhost/residence/src/apis/filteredResidences.php";
+
+const sortResidencesApi = "http://localhost/residence/src/apis/sort.php";
 function Residences() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { id } = useParams();
@@ -52,7 +54,21 @@ function Residences() {
   };
 
   const onSortDataChange = (query) => {
-    setSortData(query);
+    const fetchSortedResidences = async () => {
+      try {
+        const response = await axios.post(sortResidencesApi, {
+          type: query.toUpperCase(),
+        });
+        setResidencesData(response.data);
+        console.log(response);
+
+        console.log(query.toUpperCase());
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchSortedResidences();
   };
 
   return (
