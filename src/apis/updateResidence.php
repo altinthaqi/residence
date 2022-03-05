@@ -19,13 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tel = $_POST['telephone_number'];
     $residenceImage = $_POST['img'];
 
-
-    $sql = 'INSERT INTO residences (title, descrip, img, city, neighborhood, street, rooms, price, square_meters, telephone_number, category_id, usr_id) VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    $sql = 'UPDATE residences SET title = ?, descrip = ?, img = ?, city = ?, neighborhood = ?, street = ?, rooms = ?, price = ?, square_meters = ?, telephone_number = ?, category_id = ? WHERE id = ?';
     $query = $pdo->prepare($sql);
+    $query->execute([$title, $description, $residenceImage, $city, $neighborhood, $street, $nrRooms, $price, $residenceSize, $tel, $residenceType, $id]);
 
-    $query->execute([$title, $description, $residenceImage, $city, $neighborhood, $street, $nrRooms, $price, $residenceSize, $tel, $residenceType, $userId]);
+    // echo "User id $userId successfully inserted a residence!";
 
-    echo "User id $userId successfully inserted a residence!";
-
-    print_r([$title, $description, $residenceImage, $city, $neighborhood, $street, $nrRooms, $price, $residenceSize, $tel, $residenceType, $userId]);
+    print_r([$title, $description, $residenceImage, $city, $neighborhood, $street, $nrRooms, $price, $residenceSize, $tel, $residenceType, $id]);
 }

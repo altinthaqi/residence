@@ -42,6 +42,7 @@ const updateResidencesApi =
 
 function Residence() {
   let isMounted = true;
+
   const [specificResidenceData, setSpecificResidenceData] = useState([]);
   const [residenceOwner, setResidenceOwner] = useState({});
   const [similarResidences, setSimilarResidences] = useState([]);
@@ -50,8 +51,6 @@ function Residence() {
   const { currentUserData } = useContext(UserContext);
 
   const [isEditing, setIsEditing] = useState(false);
-  const [editingResidenceData, setEditingResidenceData] = useState();
-
   const [residenceInputData, setResidenceInputData] = useState({});
 
   useEffect(() => {
@@ -108,6 +107,7 @@ function Residence() {
       console.log(err);
     }
   };
+
   const handleTitleChange = (e) => {
     setResidenceInputData({
       id: specificResidenceData.id,
@@ -289,16 +289,21 @@ function Residence() {
     });
   };
 
-  const handleEdit = (e) => {
+  const handleEdit = async (e) => {
     setIsEditing(true);
-    console.log("editted");
     setResidenceInputData(specificResidenceData);
-    console.log("editted with data:", residenceInputData);
   };
 
   const handlePerditesoResidence = (e) => {
     e.preventDefault();
     console.log("u perditesu", residenceInputData);
+
+    axios
+      .post(updateResidencesApi, residenceInputData)
+      .then((data) => console.log(data))
+      .then(() => setSpecificResidenceData(residenceInputData))
+      .then(() => setIsEditing(false))
+      .catch((err) => console.log(err));
   };
 
   let hasPermission =
@@ -351,10 +356,9 @@ function Residence() {
 
             <Divider />
           </Container>
-          {/* {console.log(similarResidences)} */}
-          {/* {similarResidences && similarResidences.length > 1 && (
+          {similarResidences && similarResidences.length > 1 && (
             <ResidenceList residencesData={similarResidences} />
-          )} */}
+          )}
         </>
       )}
 
