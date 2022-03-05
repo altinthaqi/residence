@@ -1,8 +1,6 @@
 import React, { useContext } from "react";
 import {
   Avatar,
-  Box,
-  Button,
   Container,
   Flex,
   HStack,
@@ -11,7 +9,6 @@ import {
   MenuGroup,
   MenuItem,
   MenuList,
-  Select,
   Spacer,
   Text,
   Menu,
@@ -88,7 +85,9 @@ function HeaderMenu() {
                     <MenuDivider />
                   </MenuGroup>
                   <MenuGroup>
-                    <MenuItem onClick={handleLogOut}>Qkyqy</MenuItem>
+                    <MenuItem color="red" onClick={handleLogOut}>
+                      Qkyqy
+                    </MenuItem>
                   </MenuGroup>
                 </MenuList>
               </Menu>
