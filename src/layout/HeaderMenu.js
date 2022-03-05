@@ -1,13 +1,30 @@
 import React, { useContext } from "react";
-import { Container, Flex, HStack, Spacer, Text } from "@chakra-ui/react";
-import { NavLink } from "react-router-dom";
+import {
+  Avatar,
+  Box,
+  Button,
+  Container,
+  Flex,
+  HStack,
+  MenuButton,
+  MenuDivider,
+  MenuGroup,
+  MenuItem,
+  MenuList,
+  Select,
+  Spacer,
+  Text,
+  Menu,
+} from "@chakra-ui/react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import axios from "axios";
 
 const logoutApi = "http://localhost/residence/src/apis/logout.php";
 
-function Menu() {
+function HeaderMenu() {
   const { currentUserData, setCurrentUserData } = useContext(UserContext);
+  let navigate = useNavigate();
 
   const handleLogOut = () => {
     setCurrentUserData({ userInfo: [], isLoggedIn: false });
@@ -16,6 +33,8 @@ function Menu() {
       .get(logoutApi)
       .then((response) => console.log(response))
       .catch((err) => console.log(err));
+
+    navigate("/kyqu");
   };
 
   return (
@@ -46,9 +65,33 @@ function Menu() {
           <Text color="teal" fontWeight="medium" fontSize="lg">
             {!currentUserData.isLoggedIn && <NavLink to="/kyqu">kyqu</NavLink>}
             {currentUserData.isLoggedIn && (
-              <NavLink onClick={handleLogOut} to="/">
-                qkyqu
-              </NavLink>
+              <Menu>
+                <MenuButton colorScheme="pink">
+                  <Avatar
+                    size="md"
+                    bg="teal.500"
+                    color="white"
+                    name={`${currentUserData.userInfo.first_name} ${currentUserData.userInfo.last_name}`}
+                  />
+                </MenuButton>
+                <MenuList>
+                  <MenuGroup>
+                    <MenuItem>Profili</MenuItem>
+                    <MenuItem onClick={() => navigate("/postimet")}>
+                      Postimet
+                    </MenuItem>
+                  </MenuGroup>
+                  <MenuDivider />
+                  <MenuGroup>
+                    <MenuItem>Docs</MenuItem>
+                    <MenuItem>FAQ</MenuItem>
+                    <MenuDivider />
+                  </MenuGroup>
+                  <MenuGroup>
+                    <MenuItem onClick={handleLogOut}>Qkyqy</MenuItem>
+                  </MenuGroup>
+                </MenuList>
+              </Menu>
             )}
           </Text>
         </HStack>
@@ -57,4 +100,4 @@ function Menu() {
   );
 }
 
-export default Menu;
+export default HeaderMenu;

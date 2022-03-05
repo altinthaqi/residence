@@ -1,4 +1,4 @@
-import Menu from "./layout/Menu";
+import HeaderMenu from "./layout/HeaderMenu";
 import Homepage from "./pages/Homepage";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
@@ -9,6 +9,7 @@ import ScrollToTop from "./ScrollToTop";
 import Ofro from "./pages/Ofro";
 import { useState, useContext } from "react";
 import { UserContext } from "./context/UserContext";
+import Posts from "./pages/Posts";
 
 function App() {
   const [currentUserData, setCurrentUserData] = useState({
@@ -20,7 +21,7 @@ function App() {
     <UserContext.Provider value={{ currentUserData, setCurrentUserData }}>
       <BrowserRouter>
         <ScrollToTop />
-        <Menu />
+        <HeaderMenu />
         <Routes>
           <Route path="/" element={<Homepage />} />
 
@@ -56,6 +57,12 @@ function App() {
             path="/ofro"
             element={
               currentUserData.isLoggedIn ? <Ofro /> : <Navigate to="/kyqu" />
+            }
+          />
+          <Route
+            path="/postimet"
+            element={
+              currentUserData.isLoggedIn ? <Posts /> : <Navigate to="/kyqu" />
             }
           />
         </Routes>
