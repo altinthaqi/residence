@@ -77,12 +77,12 @@ function Residence() {
 
     const fetchSimilarResidences = async () => {
       try {
-        const rooms = specificResidenceData.rooms;
-        const response = await axios.post(similarResidencesApi, {
-          rooms,
-        });
-
-        if (isMounted) setSimilarResidences(response.data);
+        if (specificResidenceData.rooms && specificResidenceData.rooms > 0) {
+          const response = await axios.post(similarResidencesApi, {
+            rooms: Number(specificResidenceData.rooms),
+          });
+          setSimilarResidences(response.data);
+        }
       } catch (err) {
         console.log(err);
       }
