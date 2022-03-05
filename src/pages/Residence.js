@@ -15,7 +15,7 @@ import {
   Text,
   Textarea,
 } from "@chakra-ui/react";
-import React, { useContext, useEffect, useState, useRef } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ResidenceList from "../components/Residences/ResidenceList";
 import Banner from "../components/Residence/Banner";
 import Characteristics from "../components/Residence/Characteristics";
@@ -37,6 +37,9 @@ const similarResidencesApi =
 const deleteResidencesApi =
   "http://localhost/residence/src/apis/deleteResidence.php";
 
+const updateResidencesApi =
+  "http://localhost/residence/src/apis/updateResidence.php";
+
 function Residence() {
   let isMounted = true;
   const [specificResidenceData, setSpecificResidenceData] = useState([]);
@@ -47,7 +50,7 @@ function Residence() {
   const { currentUserData } = useContext(UserContext);
 
   const [isEditing, setIsEditing] = useState(false);
-  const [editingResidenceData, setEditingResidenceData] = useState({});
+  const [editingResidenceData, setEditingResidenceData] = useState();
 
   const [residenceInputData, setResidenceInputData] = useState({});
 
@@ -105,28 +108,197 @@ function Residence() {
       console.log(err);
     }
   };
-
   const handleTitleChange = (e) => {
-    setSpecificResidenceData({
-      // title: e.target.value,
-      // description: descriptRef.current.value,
-      // residenceType: typeRef.current.value,
-      // nrRooms: roomsRef.current.value,
-      // residenceSize: sizeRef.current.value,
-      // price: priceRef.current.value,
-      // city: cityRef.current.value,
-      // neighborhood: neighborhoodRef.current.value,
-      // street: streetRef.current.value,
-      // tel: telRef.current.value,
-      // residenceImage: imgRef.current.value,
-      // userId: specificResidenceData.usr_id,
+    setResidenceInputData({
+      id: specificResidenceData.id,
+      title: e.target.value,
+      descrip: residenceInputData.descrip,
+      category_id: residenceInputData.category_id,
+      rooms: residenceInputData.rooms,
+      square_meters: residenceInputData.square_meters,
+      price: residenceInputData.price,
+      city: residenceInputData.city,
+      neighborhood: residenceInputData.neighborhood,
+      street: residenceInputData.street,
+      telephone_number: residenceInputData.telephone_number,
+      img: residenceInputData.img,
+    });
+  };
+  const handleDescripChange = (e) => {
+    setResidenceInputData({
+      id: specificResidenceData.id,
+      title: residenceInputData.title,
+      descrip: e.target.value,
+      category_id: residenceInputData.category_id,
+      rooms: residenceInputData.rooms,
+      square_meters: residenceInputData.square_meters,
+      price: residenceInputData.price,
+      city: residenceInputData.city,
+      neighborhood: residenceInputData.neighborhood,
+      street: residenceInputData.street,
+      telephone_number: residenceInputData.telephone_number,
+      img: residenceInputData.img,
+    });
+  };
+  const handleCategoryChange = (e) => {
+    setResidenceInputData({
+      id: specificResidenceData.id,
+      title: residenceInputData.title,
+      descrip: residenceInputData.descrip,
+      category_id: e.target.value,
+      rooms: residenceInputData.rooms,
+      square_meters: residenceInputData.square_meters,
+      price: residenceInputData.price,
+      city: residenceInputData.city,
+      neighborhood: residenceInputData.neighborhood,
+      street: residenceInputData.street,
+      telephone_number: residenceInputData.telephone_number,
+      img: residenceInputData.img,
+    });
+  };
+  const handleRoomsChange = (e) => {
+    setResidenceInputData({
+      id: specificResidenceData.id,
+      title: residenceInputData.title,
+      descrip: residenceInputData.descrip,
+      category_id: residenceInputData.category_id,
+      rooms: e.target.value,
+      square_meters: residenceInputData.square_meters,
+      price: residenceInputData.price,
+      city: residenceInputData.city,
+      neighborhood: residenceInputData.neighborhood,
+      street: residenceInputData.street,
+      telephone_number: residenceInputData.telephone_number,
+      img: residenceInputData.img,
+    });
+  };
+  const handleSquareSizeChange = (e) => {
+    setResidenceInputData({
+      id: specificResidenceData.id,
+      title: residenceInputData.title,
+      descrip: residenceInputData.descrip,
+      category_id: residenceInputData.category_id,
+      rooms: residenceInputData.rooms,
+      square_meters: e.target.value,
+      price: residenceInputData.price,
+      city: residenceInputData.city,
+      neighborhood: residenceInputData.neighborhood,
+      street: residenceInputData.street,
+      telephone_number: residenceInputData.telephone_number,
+      img: residenceInputData.img,
+    });
+  };
+  const handlePriceChange = (e) => {
+    setResidenceInputData({
+      id: specificResidenceData.id,
+      title: residenceInputData.title,
+      descrip: residenceInputData.descrip,
+      category_id: residenceInputData.category_id,
+      rooms: residenceInputData.rooms,
+      square_meters: residenceInputData.square_meters,
+      price: e.target.value,
+      city: residenceInputData.city,
+      neighborhood: residenceInputData.neighborhood,
+      street: residenceInputData.street,
+      telephone_number: residenceInputData.telephone_number,
+      img: residenceInputData.img,
+    });
+  };
+  const handleCityChange = (e) => {
+    setResidenceInputData({
+      id: specificResidenceData.id,
+      title: residenceInputData.title,
+      descrip: residenceInputData.descrip,
+
+      category_id: residenceInputData.category_id,
+      rooms: residenceInputData.rooms,
+      square_meters: residenceInputData.square_meters,
+      price: residenceInputData.price,
+      city: e.target.value,
+      neighborhood: residenceInputData.neighborhood,
+      street: residenceInputData.street,
+      telephone_number: residenceInputData.telephone_number,
+      img: residenceInputData.img,
+    });
+  };
+  const handleNeighborhoodChange = (e) => {
+    setResidenceInputData({
+      id: specificResidenceData.id,
+      title: residenceInputData.title,
+      descrip: residenceInputData.descrip,
+
+      category_id: residenceInputData.category_id,
+      rooms: residenceInputData.rooms,
+      square_meters: residenceInputData.square_meters,
+      price: residenceInputData.price,
+      city: residenceInputData.city,
+      neighborhood: e.target.value,
+      street: residenceInputData.street,
+      telephone_number: residenceInputData.telephone_number,
+      img: residenceInputData.img,
+    });
+  };
+  const handleStreetChange = (e) => {
+    setResidenceInputData({
+      id: specificResidenceData.id,
+      title: residenceInputData.title,
+      descrip: residenceInputData.descrip,
+
+      category_id: residenceInputData.category_id,
+      rooms: residenceInputData.rooms,
+      square_meters: residenceInputData.square_meters,
+      price: residenceInputData.price,
+      city: residenceInputData.city,
+      neighborhood: residenceInputData.neighborhood,
+      street: e.target.value,
+      telephone_number: residenceInputData.telephone_number,
+      img: residenceInputData.img,
+    });
+  };
+  const handleTelephoneNumberChange = (e) => {
+    setResidenceInputData({
+      id: specificResidenceData.id,
+      title: residenceInputData.title,
+      descrip: residenceInputData.descrip,
+
+      category_id: residenceInputData.category_id,
+      rooms: residenceInputData.rooms,
+      square_meters: residenceInputData.square_meters,
+      price: residenceInputData.price,
+      city: residenceInputData.city,
+      neighborhood: residenceInputData.neighborhood,
+      street: residenceInputData.street,
+      telephone_number: e.target.value,
+      img: residenceInputData.img,
+    });
+  };
+  const handleImgChange = (e) => {
+    setResidenceInputData({
+      id: specificResidenceData.id,
+      title: residenceInputData.title,
+      descrip: residenceInputData.descrip,
+      category_id: residenceInputData.category_id,
+      rooms: residenceInputData.rooms,
+      square_meters: residenceInputData.square_meters,
+      price: residenceInputData.price,
+      city: residenceInputData.city,
+      neighborhood: residenceInputData.neighborhood,
+      street: residenceInputData.street,
+      telephone_number: residenceInputData.telephone_number,
+      img: e.target.value,
     });
   };
 
   const handleEdit = (e) => {
-    e.preventDefault();
+    setIsEditing(true);
+    console.log("editted");
+    setResidenceInputData(specificResidenceData);
+    console.log("editted with data:", residenceInputData);
+  };
 
-    // console.log(e.target.reset());
+  const handlePerditesoResidence = (e) => {
+    e.preventDefault();
+    console.log("u perditesu", residenceInputData);
   };
 
   let hasPermission =
@@ -137,7 +309,6 @@ function Residence() {
     <>
       {!isEditing && (
         <>
-          {" "}
           <Banner residenceImage={specificResidenceData.img} />
           <Center my={10}>
             <Heading textAlign="center">{specificResidenceData.title}</Heading>
@@ -167,11 +338,7 @@ function Residence() {
                 <Button onClick={handleDelete} mx={5} colorScheme="red">
                   Fshijë
                 </Button>
-                <Button
-                  mx={5}
-                  colorScheme="blue"
-                  onClick={() => setIsEditing(true)}
-                >
+                <Button mx={5} colorScheme="blue" onClick={handleEdit}>
                   Përditëso
                 </Button>
               </Flex>
@@ -185,43 +352,45 @@ function Residence() {
             <Divider />
           </Container>
           {/* {console.log(similarResidences)} */}
-          {similarResidences && similarResidences.length > 1 && (
+          {/* {similarResidences && similarResidences.length > 1 && (
             <ResidenceList residencesData={similarResidences} />
-          )}
+          )} */}
         </>
       )}
 
-      {isEditing && (
+      {isEditing && residenceInputData.category_id && (
         <Container maxWidth="600px" my={10} centerContent>
           <Heading my={15} fontWeight="medium">
             Perditeso Residencen
           </Heading>
 
           <form
-            onSubmit={handleEdit}
             style={{ width: "80%" }}
+            onSubmit={handlePerditesoResidence}
             encType="multipart/form-data"
           >
             <FormControl isRequired my={3}>
               <FormLabel>Titulli</FormLabel>
               <Input
+                onChange={handleTitleChange}
                 name="title"
                 id="title"
                 placeholder="Titulli"
                 type="text"
-                value={editingResidenceData.title}
+                value={residenceInputData.title}
               />{" "}
             </FormControl>
 
             <FormControl isRequired my={3}>
               <FormLabel>Përshkrimi</FormLabel>
               <Textarea
+                onChange={handleDescripChange}
                 name="description"
                 id="description"
                 resize="none"
                 rows="10"
                 placeholder="Pershkrimi"
-                value={editingResidenceData.descrip}
+                value={residenceInputData.descrip}
               />
             </FormControl>
 
@@ -229,8 +398,9 @@ function Residence() {
               <FormLabel>Tipi i residences</FormLabel>
               <Stack spacing={3}>
                 <Select
+                  onChange={handleCategoryChange}
                   width="150px"
-                  defaultValue={editingResidenceData.category_id}
+                  defaultValue={residenceInputData.category_id}
                   size="md"
                   name="residenceType"
                   id="residenceType"
@@ -244,45 +414,49 @@ function Residence() {
             <FormControl isRequired my={3}>
               <FormLabel>Numri dhomave të gjumit (number)</FormLabel>
               <Input
+                onChange={handleRoomsChange}
                 name="nrRooms"
                 id="nrRooms"
                 placeholder="1"
                 type="number"
                 width="150px"
-                value={editingResidenceData.rooms}
+                value={residenceInputData.rooms}
               />
             </FormControl>
 
             <FormControl isRequired my={3}>
               <FormLabel>Hapësira në m2 (number)</FormLabel>
               <Input
+                onChange={handleSquareSizeChange}
                 name="residenceSize"
                 id="residenceSize"
                 placeholder="75"
                 type="number"
-                value={editingResidenceData.square_meters}
+                value={residenceInputData.square_meters}
               />{" "}
             </FormControl>
 
             <FormControl isRequired my={3}>
               <FormLabel>Cmimi per muaj (number)</FormLabel>
               <Input
+                onChange={handlePriceChange}
                 name="price"
                 id="price"
                 placeholder="250"
                 type="number"
-                value={editingResidenceData.price}
+                value={residenceInputData.price}
               />{" "}
             </FormControl>
 
             <FormControl isRequired my={3}>
               <FormLabel>Qyteti</FormLabel>
               <Input
+                onChange={handleCityChange}
                 name="city"
                 id="city"
                 placeholder="Qyteti"
                 type="text"
-                value={editingResidenceData.city}
+                value={residenceInputData.city}
               />
             </FormControl>
 
@@ -290,11 +464,12 @@ function Residence() {
               <FormLabel>Lagjia</FormLabel>
               <InputGroup>
                 <Input
+                  onChange={handleNeighborhoodChange}
                   name="neighborhood"
                   id="neighborhood"
                   placeholder="Lagjia e residences"
                   type="text"
-                  value={editingResidenceData.neighborhood}
+                  value={residenceInputData.neighborhood}
                 />
               </InputGroup>
             </FormControl>
@@ -302,33 +477,36 @@ function Residence() {
             <FormControl isRequired my={3}>
               <FormLabel>Rruga</FormLabel>
               <Input
+                onChange={handleStreetChange}
                 name="street"
                 id="street"
                 placeholder="Rr. Azem Bajla 221"
                 type="text"
-                value={editingResidenceData.street}
+                value={residenceInputData.street}
               />
             </FormControl>
 
             <FormControl isRequired my={3}>
               <FormLabel>Numri Kontaktues (tel)</FormLabel>
               <Input
+                onChange={handleTelephoneNumberChange}
                 name="tel"
                 id="tel"
                 placeholder="049111111"
                 type="text"
-                value={editingResidenceData.telephone_number}
+                value={residenceInputData.telephone_number}
               />
             </FormControl>
 
             <FormControl isRequired my={8}>
               <FormLabel>URL i Imazhit te Residences</FormLabel>
               <Input
+                onChange={handleImgChange}
                 name="residenceImage"
                 id="residenceImage"
                 placeholder="Image Adress"
                 type="text"
-                value={editingResidenceData.img}
+                value={residenceInputData.img}
               />
             </FormControl>
             <Center>
