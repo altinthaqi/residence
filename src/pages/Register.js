@@ -13,6 +13,7 @@ import {
 import axios from "axios";
 import React, { useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 import LoginRegisterCTA from "../components/UI/LoginRegisterCTA";
 
 const loginPath = "http://localhost/residence/src/apis/register.php";
@@ -27,6 +28,8 @@ function Register() {
     password: "",
     city: "",
   });
+
+  const navigate = useNavigate();
 
   const canSubmit =
     formInputData.name !== "" &&
@@ -64,13 +67,7 @@ function Register() {
       .catch((err) => console.log(err));
     console.log(formInputData);
 
-    // setFormInputData({
-    //   name: "",
-    //   lastname: "",
-    //   email: "",
-    //   password: "",
-    //   city: "",
-    // });
+    navigate("/kyqu");
   };
   return (
     <Container maxWidth="600px" my={10} centerContent>

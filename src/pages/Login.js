@@ -12,6 +12,7 @@ import {
 import axios from "axios";
 import React, { useState, useContext } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 import LoginRegisterCTA from "../components/UI/LoginRegisterCTA";
 import { UserContext } from "../context/UserContext";
 
@@ -24,6 +25,7 @@ function Login() {
     email: "",
     password: "",
   });
+
   const canLogin = formInputData.email !== "" && formInputData.password !== "";
 
   const emailChangeHandler = (e) => {
@@ -42,9 +44,9 @@ function Login() {
       try {
         const request = await axios.post(loginPath, formInputData);
         console.log(request.data);
-        if (request.data)
+        if (request.data) {
           setCurrentUserData({ userInfo: request.data, isLoggedIn: true });
-        else console.log("does not have data");
+        } else console.log("does not have data");
 
         console.log(currentUserData);
       } catch (err) {

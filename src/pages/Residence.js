@@ -20,7 +20,7 @@ import Banner from "../components/Residence/Banner";
 import Characteristics from "../components/Residence/Characteristics";
 import Location from "../components/Residence/Location";
 import Contact from "../components/Residence/Contact";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
 
@@ -41,6 +41,7 @@ const updateResidencesApi =
 
 function Residence() {
   let isMounted = true;
+  let navigate = useNavigate();
 
   const [specificResidenceData, setSpecificResidenceData] = useState([]);
   const [residenceOwner, setResidenceOwner] = useState({});
@@ -101,6 +102,9 @@ function Residence() {
       const response = await axios.post(deleteResidencesApi, {
         resId: specificResidenceData.id,
       });
+
+      navigate("/residences");
+
       // console.log(response.data);
     } catch (err) {
       console.log(err);
@@ -355,13 +359,14 @@ function Residence() {
 
             <Divider />
           </Container>
+          {console.log(similarResidences)}
           {similarResidences && similarResidences.length > 1 && (
             <ResidenceList residencesData={similarResidences} />
           )}
         </>
       )}
 
-      {isEditing && residenceInputData.category_id && (
+      {isEditing && residenceInputData && (
         <Container maxWidth="600px" my={10} centerContent>
           <Heading my={15} fontWeight="medium">
             Perditeso Residencen

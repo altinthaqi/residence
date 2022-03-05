@@ -13,12 +13,14 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 const ofroResidenceApi = "http://localhost/residence/src/apis/ofro.php";
 
 function Ofro() {
   const { currentUserData } = useContext(UserContext);
+  let navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,6 +44,8 @@ function Ofro() {
       .catch((err) => console.log(err));
 
     console.log(e.target.reset());
+
+    navigate("/residences");
   };
 
   return (
