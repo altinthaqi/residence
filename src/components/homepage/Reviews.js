@@ -13,6 +13,7 @@ const Reviews = () => {
       alignItems="center"
       flexDirection="column"
       my={10}
+      mb="100px"
     >
       <Heading
         color="blackAlpha.800"

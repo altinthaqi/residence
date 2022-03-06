@@ -1,7 +1,8 @@
 import { Box, Button, Container, Heading, VStack } from "@chakra-ui/react";
 import React from "react";
+import { NavLink } from "react-router-dom";
 
-function CallToAction({ ctaText, btnText, contentPosition }) {
+function CallToAction({ ctaText, btnText, contentPosition, path }) {
   let alignContent;
   if (contentPosition === "left") {
     alignContent = "flex-start";
@@ -26,7 +27,13 @@ function CallToAction({ ctaText, btnText, contentPosition }) {
             >
               {ctaText}
             </Heading>
-            <Button size="lg" colorScheme="teal" color="white">
+            <Button
+              as={NavLink}
+              to={`/${path}`}
+              size="lg"
+              colorScheme="teal"
+              color="white"
+            >
               {btnText}
             </Button>
           </VStack>

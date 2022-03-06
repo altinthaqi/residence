@@ -54,7 +54,7 @@ function HeaderMenu() {
         <Spacer />
         <HStack spacing={5}>
           <Text fontWeight="medium" fontSize="lg">
-            <NavLink to="/residences">kerko</NavLink>
+            <NavLink to="/residences">kërko</NavLink>
           </Text>
           <Text fontWeight="medium" fontSize="lg">
             <NavLink to="/ofro">ofro</NavLink>
