@@ -10,6 +10,8 @@ import Ofro from "./pages/Ofro";
 import { useState, useContext } from "react";
 import { UserContext } from "./context/UserContext";
 import Posts from "./pages/Posts";
+import Profile from "./pages/Profile";
+import Footer from "./layout/Footer";
 
 function App() {
   const [currentUserData, setCurrentUserData] = useState({
@@ -65,7 +67,14 @@ function App() {
               currentUserData.isLoggedIn ? <Posts /> : <Navigate to="/kyqu" />
             }
           />
+          <Route
+            path="/profili"
+            element={
+              currentUserData.isLoggedIn ? <Profile /> : <Navigate to="/kyqu" />
+            }
+          />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </UserContext.Provider>
   );

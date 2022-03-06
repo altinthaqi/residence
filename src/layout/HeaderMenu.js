@@ -73,7 +73,9 @@ function HeaderMenu() {
                 </MenuButton>
                 <MenuList>
                   <MenuGroup>
-                    <MenuItem>Profili</MenuItem>
+                    <MenuItem onClick={() => navigate("/profili")}>
+                      Profili
+                    </MenuItem>
                     <MenuItem onClick={() => navigate("/postimet")}>
                       Postimet
                     </MenuItem>
