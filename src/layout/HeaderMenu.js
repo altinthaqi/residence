@@ -78,7 +78,7 @@ function HeaderMenu() {
                 </MenuButton>
                 <MenuList>
                   <MenuGroup
-                    title={`${currentUserData?.userInfo.first_name.toUpperCase()} ${currentUserData.userInfo.last_name.toUpperCase()}`}
+                    title={`${currentUserData?.userInfo.first_name?.toUpperCase()} ${currentUserData.userInfo.last_name?.toUpperCase()}`}
                   >
                     <Divider />
                     <MenuItem onClick={onOpen}>Profili</MenuItem>
