@@ -6,7 +6,6 @@ import {
   Heading,
   Table,
   Tbody,
-  Text,
   Th,
   Thead,
   Tr,
@@ -59,7 +58,7 @@ function Posts() {
   console.log(currentUserData.userInfo.id);
 
   return (
-    <Container maxW="container.lg">
+    <Container height="80vh" maxW="container.lg">
       {myPostsData && myPostsData?.length > 0 && (
         <Table variant="simple">
           <Thead>

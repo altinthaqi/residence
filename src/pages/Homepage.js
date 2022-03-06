@@ -7,6 +7,7 @@ import CallToAction from "../components/Homepage/CallToAction";
 import BasicStatistics from "../components/Homepage/BasicStatistics";
 import SplitWithImage from "../components/Homepage/SplitWithImage";
 import GridListWithHeading from "../components/Homepage/GridListWithHeading";
+import Simple from "../components/Homepage/Simple";
 
 function Homepage() {
   return (
@@ -23,17 +24,20 @@ function Homepage() {
 
       <BasicStatistics />
 
-      <Reviews />
-
-      <GridListWithHeading />
-
       <CallToAction
         ctaText="Jeni duke kerkuar residence?"
         btnText="Kërko"
         contentPosition="right"
         path="residences"
       />
+
+      <GridListWithHeading />
+
+      <Reviews />
+
       <Carousel />
+
+      <Simple />
     </>
   );
 }

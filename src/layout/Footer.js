@@ -71,7 +71,7 @@ export default function Footer() {
               <Logo color={useColorModeValue("gray.700", "white")} />
             </Box>
             <Text fontSize={"sm"}>
-              © 2022 residence.com. All rights reserved
+              © 2022 residence.com. Të gjitha të drejtat të rezervuara
             </Text>
             <Stack direction={"row"} spacing={6}>
               <SocialButton label={"Twitter"} href={"#"}>
@@ -86,26 +86,23 @@ export default function Footer() {
             </Stack>
           </Stack>
           <Stack align={"flex-start"}>
-            <ListHeader>Company</ListHeader>
-            <Link href="/">About us</Link>
-            <Link href={"#"}>Contact us</Link>
-            <Link href="/">Testimonials</Link>
+            <ListHeader>Kompania</ListHeader>
+            <Link href="/">Rreth nesh</Link>
+            <Link href={"#"}>Na Kontaktoni</Link>
             <Link href="/ofro">Ofro</Link>
             <Link href="/residences">Kerko</Link>
           </Stack>
           <Stack align={"flex-start"}>
-            <ListHeader>Support</ListHeader>
-            <Link href={"#"}>Help Center</Link>
-            <Link href={"#"}>Terms of Service</Link>
-            <Link href={"#"}>Legal</Link>
-            <Link href={"#"}>Privacy Policy</Link>
-            <Link href={"#"}>Satus</Link>
+            <ListHeader>Mbështetja</ListHeader>
+            <Link href={"#"}>Qendra Ndihmes</Link>
+            <Link href={"#"}>Rregullat e sherbimeve</Link>
+            <Link href={"#"}>Statusi</Link>
           </Stack>
           <Stack align={"flex-start"}>
-            <ListHeader>Stay up to date</ListHeader>
+            <ListHeader>Qëndro i informuar reth nesh</ListHeader>
             <Stack direction={"row"}>
               <Input
-                placeholder={"Your email address"}
+                placeholder={"Email-i yt"}
                 bg={useColorModeValue("blackAlpha.100", "whiteAlpha.100")}
                 border={0}
                 _focus={{

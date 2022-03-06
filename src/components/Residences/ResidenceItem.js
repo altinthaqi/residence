@@ -1,8 +1,14 @@
-import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
-import React from "react";
+import {
+  Badge,
+  Box,
+  Flex,
+  Image,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 
-function ResidenceItem({
+export default function ResidenceItem({
   id,
   img,
   title,
@@ -11,54 +17,56 @@ function ResidenceItem({
   rooms,
   price,
   category_id,
+  square_meters,
 }) {
+  let category = category_id === "1" ? "Banese" : "Shtepi";
+
   return (
-    <Box boxShadow="sm">
-      <Flex>
-        <Image p={2} maxWidth={["180px", "250px"]} src={img} />
-        <Box px={2} width="50%">
-          <Flex direction="column" justifyContent="space-around" height="100%">
-            <Box>
-              <Heading
-                mb={2}
-                fontWeight="medium"
-                color="teal.700"
-                fontSize={["16px", "21px"]}
-              >
-                <NavLink to={`/residences/${id}`}>{title}</NavLink>
-              </Heading>
-              <Text fontSize={["14px", "16px"]}>
-                <Box as="span" fontWeight="medium">
-                  Qyteti:
-                </Box>{" "}
-                {city}
-              </Text>
-              <Text fontSize={["14px", "16px"]}>
-                <Box as="span" fontWeight="medium">
-                  Tipi:
-                </Box>{" "}
-                {category_id == 1 ? "Banese" : "Shtepi"}
-              </Text>
-            </Box>
-            <Box>
-              <Text fontSize={["14px", "16px"]}>
-                <Box as="span" fontWeight="medium">
-                  Dhoma:
-                </Box>{" "}
-                {rooms}
-              </Text>
-              <Text fontSize={["14px", "16px"]}>
-                <Box as="span" fontWeight="medium">
-                  Cmimi:
-                </Box>{" "}
-                {price}&euro;
-              </Text>
-            </Box>
-          </Flex>
+    <Box bg="white" maxW="sm" borderWidth="1px" rounded="lg" shadow="md">
+      <Image src={img} alt={title} roundedTop="lg" height={["auto", "330px"]} />
+
+      <Box p="6">
+        <Box d="flex" alignItems="baseline">
+          <Badge rounded="full" px="2" colorScheme="teal">
+            {category}
+          </Badge>
+
+          <Box
+            color="gray.500"
+            fontWeight="semibold"
+            letterSpacing="wide"
+            fontSize="xs"
+            textTransform="uppercase"
+            ml="2"
+          >
+            {rooms} Dhoma &bull; {square_meters} m2
+          </Box>
         </Box>
-      </Flex>
+
+        <Box
+          fontWeight="semibold"
+          as={"h4"}
+          lineHeight="tight"
+          isTruncated
+          my="10px"
+          color="teal.600"
+          fontSize="21px"
+        >
+          <NavLink to={`/residences/${id}`}>{title}</NavLink>
+        </Box>
+
+        <Text mb="10px" fontSize="14px" color="gray.500">
+          Qyteti: {city}
+        </Text>
+
+        <Box>
+          {price}&euro;
+          <Box as="span" color="gray.600" fontSize="sm">
+            {" "}
+            / muaj
+          </Box>
+        </Box>
+      </Box>
     </Box>
   );
 }
-
-export default ResidenceItem;

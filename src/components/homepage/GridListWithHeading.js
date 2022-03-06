@@ -15,7 +15,7 @@ import { functionalityData } from "../../data/aboutData";
 
 export default function GridListWithHeading() {
   return (
-    <Box mb="100px" p={4}>
+    <Box my="100px" p={4}>
       <Stack spacing={4} as={Container} maxW={"3xl"} textAlign={"center"}>
         <Heading fontSize={"3xl"}>Funksionaliteti i Residence.com</Heading>
         <Text color={"gray.600"} fontSize={"xl"}>
