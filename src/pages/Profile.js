@@ -1,6 +1,5 @@
 import {
   Button,
-  Center,
   Container,
   Divider,
   Drawer,
@@ -11,7 +10,6 @@ import {
   DrawerHeader,
   DrawerOverlay,
   FormControl,
-  FormHelperText,
   FormLabel,
   Heading,
   HStack,
@@ -20,7 +18,6 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 import React, { useContext, useState } from "react";
-import LoginRegisterCTA from "../components/UI/LoginRegisterCTA";
 import ProfileInfo from "../components/UI/ProfileInfo";
 import { UserContext } from "../context/UserContext";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
@@ -31,11 +28,7 @@ const editProfileApi = "http://localhost/residence/src/apis/editProfile.php";
 export default function Profile({ onOpen, isOpen, onClose }) {
   const { currentUserData, setCurrentUserData } = useContext(UserContext);
   const [isEditing, setIsEditing] = useState(false);
-
-  //
-
   const [showPassword, setShowPassword] = useState(false);
-
   const [formInputData, setFormInputData] = useState({
     name: "",
     lastname: "",
@@ -88,7 +81,7 @@ export default function Profile({ onOpen, isOpen, onClose }) {
         first_name: formInputData.name,
         last_name: formInputData.lastname,
         passw: formInputData.password,
-        role_id: currentUserData.role_id,
+        role_id: currentUserData.userInfo.role_id,
       },
       isLoggedIn: true,
     });

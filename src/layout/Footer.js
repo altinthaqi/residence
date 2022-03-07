@@ -14,6 +14,10 @@ import {
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { BiMailSend } from "react-icons/bi";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
+
+const subscribeApi = "http://localhost/residence/src/apis/subscribeApi.php";
 
 const Logo = (props) => {
   return (
@@ -56,6 +60,16 @@ const ListHeader = ({ children }) => {
 };
 
 export default function Footer() {
+  const [state, setState] = useState("");
+  const [email, setEmail] = useState("");
+  const handleSubscribeSubmit = () => {
+    axios
+      .post(subscribeApi, { email: email })
+      .then((res) => setState("success"))
+      .catch((err) => {
+        setState("error");
+      });
+  };
   return (
     <Box
       bg={useColorModeValue("gray.50", "gray.900")}
@@ -100,25 +114,49 @@ export default function Footer() {
           </Stack>
           <Stack align={"flex-start"}>
             <ListHeader>Qëndro i informuar reth nesh</ListHeader>
-            <Stack direction={"row"}>
-              <Input
-                placeholder={"Email-i yt"}
-                bg={useColorModeValue("blackAlpha.100", "whiteAlpha.100")}
-                border={0}
-                _focus={{
-                  bg: "whiteAlpha.300",
-                }}
-              />
-              <IconButton
-                bg={useColorModeValue("green.400", "green.800")}
-                color={useColorModeValue("white", "gray.800")}
-                _hover={{
-                  bg: "green.600",
-                }}
-                aria-label="Subscribe"
-                icon={<BiMailSend />}
-              />
-            </Stack>
+            {state !== "error" && (
+              <Stack direction={"row"}>
+                <Input
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder={"Email-i yt"}
+                  type="email"
+                  bg="blackAlpha.100"
+                  border={0}
+                  _focus={{
+                    bg: "whiteAlpha.300",
+                  }}
+                />
+                {state !== "success" && (
+                  <IconButton
+                    bg="green.400"
+                    color="white"
+                    _hover={{
+                      bg: "green.600",
+                    }}
+                    aria-label="Subscribe"
+                    icon={<BiMailSend />}
+                    onClick={handleSubscribeSubmit}
+                  />
+                )}
+
+                {state === "success" && (
+                  <IconButton
+                    isDisabled
+                    bg="green.400"
+                    color="white"
+                    _hover={{
+                      bg: "green.600",
+                    }}
+                    aria-label="Subscribe"
+                    icon={<BiMailSend />}
+                  />
+                )}
+              </Stack>
+            )}
+            {state === "success" && <Text>Ju faleminderit!</Text>}
+            {state === "error" && (
+              <Text>Diqka shkoj gabim! Provoni përsëri më vonë!</Text>
+            )}
           </Stack>
         </SimpleGrid>
       </Container>

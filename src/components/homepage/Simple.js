@@ -10,12 +10,29 @@ import {
   Container,
   Flex,
 } from "@chakra-ui/react";
+import axios from "axios";
+
+const subscribeApi = "http://localhost/residence/src/apis/subscribeApi.php";
 
 export default function Simple() {
   const [email, setEmail] = useState("");
   const [state, setState] = useState("initial");
-
   const [error, setError] = useState(false);
+
+  const handleSubscribeSubmit = (e) => {
+    e.preventDefault();
+    setError(false);
+    setState("submitting");
+    console.log("submitted", email);
+
+    axios
+      .post(subscribeApi, { email: email })
+      .then((res) => setState("success"))
+      .catch((err) => {
+        setError(true);
+        setState("initial");
+      });
+  };
 
   return (
     <Flex
@@ -44,22 +61,7 @@ export default function Simple() {
           direction={{ base: "column", md: "row" }}
           as={"form"}
           spacing={"12px"}
-          onSubmit={(e) => {
-            e.preventDefault();
-            setError(false);
-            setState("submitting");
-
-            // remove this code and implement your submit logic right here
-            setTimeout(() => {
-              if (email === "fail@example.com") {
-                setError(true);
-                setState("initial");
-                return;
-              }
-
-              setState("success");
-            }, 1000);
-          }}
+          onSubmit={handleSubscribeSubmit}
         >
           <FormControl>
             <Input
@@ -81,16 +83,14 @@ export default function Simple() {
             />
           </FormControl>
           <FormControl w={{ base: "100%", md: "40%" }}>
-            {state !== "success" && (
-              <Button
-                colorScheme={state === "success" ? "green" : "blue"}
-                isLoading={state === "submitting"}
-                w="100%"
-                type={state === "success" ? "button" : "submit"}
-              >
-                Abonohu
-              </Button>
-            )}
+            <Button
+              colorScheme={state === "success" ? "green" : "blue"}
+              isLoading={state === "submitting"}
+              w="100%"
+              type={state === "success" ? "button" : "submit"}
+            >
+              {state === "success" ? "Faleminderit!" : "Abonohu"}
+            </Button>
           </FormControl>
         </Stack>
         <Text
