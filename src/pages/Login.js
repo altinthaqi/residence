@@ -10,7 +10,7 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 import axios from "axios";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import LoginRegisterCTA from "../components/UI/LoginRegisterCTA";
@@ -20,6 +20,8 @@ const loginPath = "http://localhost/residence/src/apis/login.php";
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const { currentUserData, setCurrentUserData } = useContext(UserContext);
+
+  let navigate = useNavigate();
 
   const [formInputData, setFormInputData] = useState({
     email: "",
@@ -38,7 +40,7 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formInputData);
+    console.log("role", currentUserData.userInfo.role_id);
 
     const userLogIn = async () => {
       try {
@@ -55,6 +57,9 @@ function Login() {
     };
 
     userLogIn();
+    currentUserData.userInfo.role_id === "2"
+      ? navigate("/dashboard")
+      : navigate("/residences");
   };
   return (
     <Container maxWidth="600px" my={10} centerContent>

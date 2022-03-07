@@ -12,12 +12,15 @@ import { UserContext } from "./context/UserContext";
 import Posts from "./pages/Posts";
 import Profile from "./pages/Profile";
 import Footer from "./layout/Footer";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   const [currentUserData, setCurrentUserData] = useState({
     userInfo: [],
     isLoggedIn: false,
   });
+
+  console.log(currentUserData.userInfo);
 
   return (
     <UserContext.Provider value={{ currentUserData, setCurrentUserData }}>
@@ -26,7 +29,6 @@ function App() {
         <HeaderMenu />
         <Routes>
           <Route path="/" element={<Homepage />} />
-
           <Route
             path="/regjistrohu"
             element={currentUserData.isLoggedIn ? <Residences /> : <Register />}
@@ -73,8 +75,19 @@ function App() {
               currentUserData.isLoggedIn ? <Profile /> : <Navigate to="/kyqu" />
             }
           />
+
+          <Route
+            path="/dashboard"
+            element={
+              currentUserData.userInfo.role_id === "2" ? (
+                <Dashboard />
+              ) : (
+                <Navigate to="/kyqu" />
+              )
+            }
+          />
         </Routes>
-        <Footer />
+        {currentUserData.userInfo.role_id !== "2" && <Footer />}
       </BrowserRouter>
     </UserContext.Provider>
   );

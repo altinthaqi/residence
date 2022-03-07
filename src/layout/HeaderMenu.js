@@ -29,11 +29,11 @@ function HeaderMenu() {
   let navigate = useNavigate();
 
   const handleLogOut = () => {
-    setCurrentUserData({ userInfo: [], isLoggedIn: false });
-
     axios
       .get(logoutApi)
-      .then((response) => console.log(response))
+      .then((response) =>
+        setCurrentUserData({ userInfo: [], isLoggedIn: false })
+      )
       .catch((err) => console.log(err));
 
     navigate("/kyqu");
@@ -58,12 +58,17 @@ function HeaderMenu() {
         </Text>
         <Spacer />
         <HStack spacing={5}>
-          <Text fontWeight="medium" fontSize="lg">
-            <NavLink to="/residences">kërko</NavLink>
-          </Text>
-          <Text fontWeight="medium" fontSize="lg">
-            <NavLink to="/ofro">ofro</NavLink>
-          </Text>
+          {currentUserData.userInfo.role_id === "1" && (
+            <>
+              <Text fontWeight="medium" fontSize="lg">
+                <NavLink to="/residences">kërko</NavLink>
+              </Text>
+
+              <Text fontWeight="medium" fontSize="lg">
+                <NavLink to="/ofro">ofro</NavLink>
+              </Text>
+            </>
+          )}
           <Text color="teal" fontWeight="medium" fontSize="lg">
             {!currentUserData.isLoggedIn && <NavLink to="/kyqu">kyqu</NavLink>}
             {currentUserData.isLoggedIn && (
@@ -77,21 +82,35 @@ function HeaderMenu() {
                   />
                 </MenuButton>
                 <MenuList>
-                  <MenuGroup
-                    title={`${currentUserData?.userInfo.first_name?.toUpperCase()} ${currentUserData.userInfo.last_name?.toUpperCase()}`}
-                  >
-                    <Divider />
-                    <MenuItem onClick={onOpen}>Profili</MenuItem>
-                    <MenuItem onClick={() => navigate("/postimet")}>
-                      Postimet
-                    </MenuItem>
-                  </MenuGroup>
-                  <MenuDivider />
-                  <MenuGroup>
-                    <MenuItem>Docs</MenuItem>
-                    <MenuItem>FAQ</MenuItem>
-                    <MenuDivider />
-                  </MenuGroup>
+                  {currentUserData.userInfo.role_id === "1" && (
+                    <>
+                      <MenuGroup
+                        title={`${currentUserData?.userInfo.first_name?.toUpperCase()} ${currentUserData.userInfo.last_name?.toUpperCase()}`}
+                      >
+                        <Divider />
+                        <MenuItem onClick={onOpen}>Profili</MenuItem>
+                        <MenuItem onClick={() => navigate("/postimet")}>
+                          Postimet
+                        </MenuItem>
+                      </MenuGroup>
+                      <MenuDivider />
+                      <MenuGroup>
+                        <MenuItem>Docs</MenuItem>
+                        <MenuItem>FAQ</MenuItem>
+                        <MenuDivider />
+                      </MenuGroup>
+                    </>
+                  )}
+
+                  {currentUserData.userInfo.role_id === "2" && (
+                    <MenuGroup title="ADMIN">
+                      <Divider />
+                      <MenuItem onClick={() => navigate("/dashboard")}>
+                        Dashboard
+                      </MenuItem>
+                    </MenuGroup>
+                  )}
+
                   <MenuGroup>
                     <MenuItem color="red" onClick={handleLogOut}>
                       Qkyqy

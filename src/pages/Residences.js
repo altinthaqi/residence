@@ -1,9 +1,10 @@
 import { useDisclosure } from "@chakra-ui/react";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import PersonalizedSearchBar from "../components/Residences/PersonalizedSearchBar";
 import ResidenceList from "../components/Residences/ResidenceList";
+import { UserContext } from "../context/UserContext";
 
 const fetchAllResidencesApi =
   "http://localhost/residence/src/apis/residences.php";
@@ -24,6 +25,10 @@ function Residences() {
 
   const [residencesData, setResidencesData] = useState([]);
 
+  const { currentUserData } = useContext(UserContext);
+
+  let navigate = useNavigate();
+
   useEffect(() => {
     const fetchResidences = async () => {
       try {
@@ -35,7 +40,9 @@ function Residences() {
     };
 
     fetchResidences();
-  }, [id]);
+
+    currentUserData.userInfo.role_id === "2" && navigate("/dashboard");
+  }, [id, currentUserData.userInfo.role_id, navigate]);
 
   const onSubmitFilter = (query) => {
     setFilterData(query);
