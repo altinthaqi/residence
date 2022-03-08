@@ -22,7 +22,14 @@ export default function ResidenceItem({
   let category = category_id === "1" ? "Banese" : "Shtepi";
 
   return (
-    <Box bg="white" maxW="sm" borderWidth="1px" rounded="lg" shadow="md">
+    <Box
+      bg="white"
+      maxW="sm"
+      borderWidth="1px"
+      rounded="lg"
+      shadow="md"
+      maxWidth="320px"
+    >
       <Image src={img} alt={title} roundedTop="lg" height={["auto", "330px"]} />
 
       <Box p="6">
@@ -52,7 +59,9 @@ export default function ResidenceItem({
           color="teal.600"
           fontSize="21px"
         >
-          <NavLink to={`/residences/${id}`}>{title}</NavLink>
+          <NavLink isTruncated to={`/residences/${id}`}>
+            {title}
+          </NavLink>
         </Box>
 
         <Text mb="10px" fontSize="14px" color="gray.500">

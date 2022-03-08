@@ -53,12 +53,15 @@ function HeaderMenu() {
       zIndex={100}
     >
       <Flex>
-        <Text fontWeight="semibold" fontSize="xl">
-          <NavLink to="/">residence.com</NavLink>
-        </Text>
+        {" "}
+        {currentUserData.userInfo.role_id !== "2" && (
+          <Text fontWeight="semibold" fontSize="xl">
+            <NavLink to="/">residence.com</NavLink>
+          </Text>
+        )}
         <Spacer />
         <HStack spacing={5}>
-          {currentUserData.userInfo.role_id === "1" && (
+          {currentUserData.userInfo.role_id !== "2" && (
             <>
               <Text fontWeight="medium" fontSize="lg">
                 <NavLink to="/residences">kërko</NavLink>
